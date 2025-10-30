@@ -1,0 +1,140 @@
+.products-container {
+  width: 100%;
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  background: #f8f9fa;
+}
+
+.products-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 2rem;
+}
+
+.products-header h1 {
+  color: #E94444;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.products-header p {
+  color: #666;
+  font-size: 1.2rem;
+}
+
+.products-categories {
+  margin-bottom: 4rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.products-categories h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.category-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.category-card.active {
+  border-color: #D22030;
+  background-color: #fff;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.category-card h3 {
+  color: #D22030;
+  margin: 0 0 0.75rem 0;
+  font-size: 1.1rem;
+}
+
+.category-card p {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.products-list {
+  margin-top: 4rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.products-list h2 {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+  font-size: 2rem;
+}
+
+/* REMOVED duplicate .products-container definition */
+
+@media (max-width: 1200px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .products-container,
+  .products-categories,
+  .products-list {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .category-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .products-header h1 {
+    font-size: 2rem;
+  }
+  
+  .category-card {
+    padding: 1rem;
+  }
+  
+  .products-container,
+  .products-categories,
+  .products-list {
+    padding: 1rem;
+  }
+}

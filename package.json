@@ -11,7 +11,7 @@
   "predeploy": "npm run build",
   "deploy": "gh-pages -d dist"
 },
-"homepage": "https://evankooz.github.io/testdemo",
+"homepage": "https://evankooz.github.io/royco-distributors",
 
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",

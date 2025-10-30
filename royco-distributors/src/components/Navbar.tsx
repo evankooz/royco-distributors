@@ -131,7 +131,10 @@ export function Navbar() {
     <Header role="banner" aria-label="Main navigation">
       <Nav role="navigation" aria-label="Primary">
         <Logo to="/" aria-label="Royco Distributors home">
-          <LogoImg src="/images/logo.png" alt="Royco Distributors logo" />
+          <LogoImg 
+            src={`${import.meta.env.BASE_URL}images/logo.png`}
+            alt="Royco Distributors Logo"
+            />
         </Logo>
 
         {/* Desktop links / mobile toggled menu */}

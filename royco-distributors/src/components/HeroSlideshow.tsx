@@ -2,6 +2,14 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import slide1 from '../assets/slides/royco-building.png';
+import slide2 from '../assets/slides/royco-fleet.png';
+import slide3 from '../assets/slides/royco-storage.png';
+
+/* -----------------------------
+   Styled Components
+------------------------------ */
+
 const SlideshowContainer = styled.section`
   position: relative;
   width: 100%;
@@ -20,7 +28,7 @@ const Slide = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -51,17 +59,17 @@ const SlideTitle = styled.h1`
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1;
-  
+
   @media (max-width: 1024px) {
-    font-size: 4rem;
+    font-size: 3.5rem;
   }
-  
+
   @media (max-width: 768px) {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
-  
+
   @media (max-width: 480px) {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 `;
 
@@ -71,6 +79,7 @@ const SlideControls = styled.div`
   right: 2rem;
   display: flex;
   gap: 0.5rem;
+  z-index: 3;
 `;
 
 const DotButton = styled.button<{ $isActive: boolean }>`
@@ -80,7 +89,7 @@ const DotButton = styled.button<{ $isActive: boolean }>`
   border: 2px solid #fff;
   background: ${({ $isActive }) => ($isActive ? '#fff' : 'transparent')};
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   padding: 0;
 
   &:hover {
@@ -88,20 +97,15 @@ const DotButton = styled.button<{ $isActive: boolean }>`
   }
 `;
 
+/* -----------------------------
+   Component
+------------------------------ */
+
 export default function HeroSlideshow() {
   const slides = [
-    { 
-      image: '/slides/royco-building.png',
-      text: 'Your Trusted Distribution Partner'
-    },
-    {
-      image: '/slides/royco-fleet.png',
-      text: 'Quality. Service. Value.'
-    },
-    {
-      image: '/slides/royco-storage.png',
-      text: 'Industrial Equipment & Supplies'
-    }
+    { image: slide1, text: 'Your Trusted Distribution Partner' },
+    { image: slide2, text: 'Quality. Service. Value.' },
+    { image: slide3, text: 'Industrial Equipment & Supplies' },
   ];
 
   const [index, setIndex] = useState(0);
@@ -136,6 +140,7 @@ export default function HeroSlideshow() {
           </SlideContent>
         </Slide>
       </AnimatePresence>
+
       <SlideControls>
         {slides.map((_, i) => (
           <DotButton

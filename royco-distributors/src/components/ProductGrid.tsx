@@ -65,6 +65,8 @@ const ProductCategory = styled.span`
   margin-top: 0.5rem;
 `;
 
+const base = import.meta.env.BASE_URL;
+
 interface Product {
   id: number;
   name: string;
@@ -118,14 +120,14 @@ const allProducts: Product[] = [
     name: 'Premium Motor Oil',
     description: 'High-performance synthetic motor oil for superior engine protection.',
     category: 'Lubricants',
-    imageUrl: '/images/havoline.png'
+    imageUrl: `${base}images/havoline.png`
   },
   {
     id: 2,
     name: 'Industrial Grease',
     description: 'Heavy-duty grease for industrial machinery and equipment.',
     category: 'Lubricants',
-    imageUrl: '/images/excavator.png'
+    imageUrl: `${base}images/excavator.png`
   },
   // Chemicals
   {
@@ -133,14 +135,14 @@ const allProducts: Product[] = [
     name: 'Industrial Solvents',
     description: 'Professional-grade solvents for industrial cleaning.',
     category: 'Chemicals',
-    imageUrl: '/images/logo-oildri-o.png'
+    imageUrl: `${base}images/logo-oildri-o.png`
   },
   {
     id: 4,
     name: 'Cleaning Solutions',
     description: 'Industrial cleaning solutions for all surfaces.',
     category: 'Chemicals',
-    imageUrl: '/images/purusoil.png'
+    imageUrl: `${base}images/purusoil.png`
   },
   // Coolants
   {
@@ -148,14 +150,14 @@ const allProducts: Product[] = [
     name: 'Extended Life Antifreeze',
     description: 'Long-lasting antifreeze and coolant solution.',
     category: 'Coolants',
-    imageUrl: '/images/product5.webp'
+    imageUrl: `${base}images/product5.webp`
   },
   {
     id: 6,
     name: 'Heavy-Duty Coolant',
     description: 'Premium coolant for heavy-duty diesel engines.',
     category: 'Coolants',
-    imageUrl: '/images/servicepro.png'
+    imageUrl: `${base}images/servicepro.png`
   },
   // Absorbents
   {
@@ -163,14 +165,14 @@ const allProducts: Product[] = [
     name: 'Universal Absorbent Pads',
     description: 'Quick-absorbing pads for spill containment.',
     category: 'Absorbents',
-    imageUrl: '/images/product7.webp'
+    imageUrl: `${base}images/product7.webp`
   },
   {
     id: 8,
     name: 'Oil-Only Socks',
     description: 'Specialized absorbents for oil-based spills.',
     category: 'Absorbents',
-    imageUrl: '/images/product8.webp'
+    imageUrl: `${base}images/product8.webp`
   },
   // Racing Fuels
   {
@@ -178,14 +180,14 @@ const allProducts: Product[] = [
     name: 'Race Fuel Additive',
     description: 'Performance-enhancing fuel treatment for racing applications.',
     category: 'Racing Fuels & Treatments',
-    imageUrl: '/images/car.png'
+    imageUrl: `${base}images/car.png`
   },
   {
     id: 10,
     name: 'Octane Booster',
     description: 'Professional-grade octane enhancement solution.',
     category: 'Racing Fuels & Treatments',
-    imageUrl: '/images/product10.webp'
+    imageUrl: `${base}images/product10.webp`
   },
   // Auto Accessories
   {
@@ -193,14 +195,14 @@ const allProducts: Product[] = [
     name: 'Filter Kit',
     description: 'Complete filter maintenance kit for vehicles.',
     category: 'Auto Accessories',
-    imageUrl: '/images/product11.webp'
+    imageUrl: `${base}images/product11.webp`
   },
   {
     id: 12,
     name: 'Battery Charger',
     description: 'Professional-grade battery charging system.',
     category: 'Auto Accessories',
-    imageUrl: '/images/purusbattery.png'
+    imageUrl: `${base}images/purusbattery.png`
   }
 ];
 

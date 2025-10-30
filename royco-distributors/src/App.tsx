@@ -54,12 +54,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-// Brand Colors (can be used throughout the app)
-const COLORS = {
-  red: '#D22030',
-  blue: '#005FBF',
-};
-
 const Main = styled.main`
   width: 100%;
 `;

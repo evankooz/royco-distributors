@@ -393,4 +393,4 @@ Please change the parent <Route path="${_}"> to <Route path="${_==="/"?"*":`${_}
   }
 `,TR=Tt.main`
   width: 100%;
-`;function AR(){return D.jsxs(D.Fragment,{children:[D.jsx(KD,{}),D.jsx(xR,{}),D.jsx(TR,{children:D.jsxs(xT,{children:[D.jsx(Fl,{path:"/",element:D.jsx(gR,{})}),D.jsx(Fl,{path:"/products",element:D.jsx(vR,{})}),D.jsx(Fl,{path:"/about",element:D.jsx(SR,{})}),D.jsx(Fl,{path:"/contact",element:D.jsx(bR,{})})]})}),D.jsx($D,{})]})}zx.createRoot(document.getElementById("root")).render(D.jsx(C.StrictMode,{children:D.jsx(KT,{basename:"/royco-distributors/",children:D.jsx(AR,{})})}));
+`;function AR(){return D.jsxs(D.Fragment,{children:[D.jsx(KD,{}),D.jsx(xR,{}),D.jsx(TR,{children:D.jsxs(xT,{children:[D.jsx(Fl,{path:"/",element:D.jsx(gR,{})}),D.jsx(Fl,{path:"/products",element:D.jsx(vR,{})}),D.jsx(Fl,{path:"/about",element:D.jsx(SR,{})}),D.jsx(Fl,{path:"/contact",element:D.jsx(bR,{})})]})}),D.jsx($D,{})]})}zx.createRoot(document.getElementById("root")).render(D.jsx(C.StrictMode,{children:D.jsx(KT,{basename:"/royco-distributors",children:D.jsx(AR,{})})}));

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const FooterContainer = styled.footer`
   background: #005FBF;
@@ -112,10 +113,10 @@ export default function Footer() {
         >
           <h3>Quick Links</h3>
           <QuickLinks>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/products">Products</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><Link to="/about">About Us</Link></li>
+            <li><Link to="/products">Products</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/privacy">Privacy Policy</Link></li>
           </QuickLinks>
         </FooterSection>
 

@@ -16,7 +16,7 @@ const Home: React.FC = () => {
           <h1>Welcome to Royco Distributors</h1>
           <p className="subtitle">New England's Premier Industrial Solutions Provider</p>
           <p className="intro-text">
-            Since our establishment, we've been delivering top-quality industrial solutions 
+            Since our beginning, we've been delivering top-quality industrial solutions 
             and lubricants to businesses across New England. Our commitment to excellence 
             and customer satisfaction has made us a trusted partner in the industry.
           </p>

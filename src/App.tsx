@@ -7,7 +7,6 @@ import Products from './pages/Products';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
-import ScrollToTop from './components/ScrollToTop';
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -65,7 +64,6 @@ function App() {
     <>
       <Navbar />
       <GlobalStyle />
-      <ScrollToTop />
       <Main>
         <Routes>
           <Route path="/" element={<Home />} />

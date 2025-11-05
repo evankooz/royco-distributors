@@ -10,18 +10,30 @@ const FooterContainer = styled.footer`
 `;
 
 const FooterContent = styled.div`
-  max-width: 1200px;
+  max-width: 100px; 
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   gap: 2rem;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
 `;
 
 const FooterSection = styled(motion.div)`
+  flex: 1;
+  min-width: 250px;
+
   h3 {
     color: #fff;
     margin: 0 0 1rem;
-    font-size: 1.25rem;
+    font-size: 1.4rem;
   }
 `;
 
@@ -38,6 +50,10 @@ const ContactInfo = styled.div`
     &:hover {
       color: #D22030;
     }
+  }
+
+  p {
+    margin: 0.5rem 0 0;
   }
 `;
 
@@ -60,28 +76,11 @@ const QuickLinks = styled.ul`
   }
 `;
 
-const SocialLinks = styled.div`
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-
-  a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.5rem;
-    transition: transform 0.2s;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-`;
-
 const Copyright = styled.div`
   text-align: center;
   margin-top: 3rem;
   padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 `;
 
 export default function Footer() {
@@ -90,6 +89,7 @@ export default function Footer() {
   return (
     <FooterContainer>
       <FooterContent>
+        {/* Contact Section */}
         <FooterSection
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -97,14 +97,17 @@ export default function Footer() {
         >
           <h3>Contact Us</h3>
           <ContactInfo>
-            <a href="tel:+9786328151">978-632-8151</a>
+            <a href="tel:+19786328151">978-632-8151</a>
             <a href="mailto:info@roycodistributors.com">
               info@roycodistributors.com
             </a>
-            <p>211 Colony Road,<br />Gardner, MA 01440</p>
+            <p>
+              211 Colony Road,<br />Gardner, MA 01440
+            </p>
           </ContactInfo>
         </FooterSection>
 
+        {/* Quick Links */}
         <FooterSection
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -118,21 +121,6 @@ export default function Footer() {
             <li><Link to="/contact">Contact</Link></li>
             <li><Link to="/privacy">Privacy Policy</Link></li>
           </QuickLinks>
-        </FooterSection>
-
-        <FooterSection
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-        >
-          <h3>Connect With Us</h3>
-          <p>Follow us on social media for the latest updates and news.</p>
-          <SocialLinks>
-            <a href="https://facebook.com" aria-label="Facebook">📱</a>
-            <a href="https://twitter.com" aria-label="Twitter">📱</a>
-            <a href="https://linkedin.com" aria-label="LinkedIn">📱</a>
-          </SocialLinks>
         </FooterSection>
       </FooterContent>
 

@@ -1,10 +1,12 @@
 .about-container {
-  max-width: 1200px;
+  padding: 4rem 2rem;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem;
-  min-height: calc(100vh - var(--navbar-height));
+  background: #fff;
+  color: #222;
 }
 
+/* Hero */
 .hero-section {
   text-align: center;
   margin-bottom: 4rem;
@@ -18,11 +20,32 @@
 
 .hero-text {
   font-size: 1.2rem;
-  color: #666;
+  color: #444;
   max-width: 800px;
   margin: 0 auto;
+  line-height: 1.7;
 }
 
+/* Mission */
+.mission-section {
+  text-align: center;
+  margin: 3rem auto 4rem;
+  max-width: 900px;
+}
+
+.mission-section h2 {
+  color: #E94444;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.mission-section p {
+  color: #555;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* Stats */
 .stats-section {
   margin: 4rem auto;
   padding: 0 2rem;
@@ -41,16 +64,13 @@
   background: white;
   padding: 2rem;
   border-radius: 10px;
+  border-top: 4px solid #005FBF;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease;
 }
 
 .stat-item:hover {
   transform: translateY(-5px);
-}
-
-.stat-header {
-  margin-bottom: 1rem;
 }
 
 .stat-item h2 {
@@ -61,7 +81,7 @@
 }
 
 .stat-item h3 {
-  color: #333;
+  color: #005FBF;
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -73,6 +93,7 @@
   font-size: 0.95rem;
 }
 
+/* Features */
 .features-section {
   background-color: #f8f9fa;
   padding: 3rem 0;
@@ -90,11 +111,12 @@
   background: white;
   padding: 1.5rem;
   border-radius: 10px;
+  border-left: 4px solid #005FBF;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .feature-card h3 {
-  color: #E94444;
+  color: #005FBF;
   margin-bottom: 1rem;
 }
 
@@ -104,6 +126,35 @@
   line-height: 1.5;
 }
 
+/* Partners */
+.partners-section {
+  text-align: center;
+  margin: 4rem auto;
+  max-width: 1000px;
+}
+
+.partners-section h2 {
+  color: #005FBF;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.partners-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.partners-logos img {
+  height: 100px;
+  width: auto;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+/* Responsive */
 @media (max-width: 1024px) {
   .stats-grid,
   .features-grid {
@@ -116,7 +167,7 @@
   .features-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .hero-section h1 {
     font-size: 2.5rem;
   }

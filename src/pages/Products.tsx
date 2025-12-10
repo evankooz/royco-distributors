@@ -13,7 +13,7 @@ const Products: React.FC = () => {
       </section>
 
       <section className="products-categories">
-        <h2>Categories</h2>
+        <h2>Select A Category</h2>
         <div className="category-grid">
           {productCategories.map((category) => (
             <div

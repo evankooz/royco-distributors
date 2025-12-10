@@ -1,5 +1,4 @@
 // src/pages/About.tsx
-import React from 'react';
 import '../styles/About.css';
 
 const base = import.meta.env.BASE_URL; // fixes image paths on GH Pages

@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
 import '../styles/Contact.css';
 
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+  message: string;
+}
+
+interface FormErrors {
+  [key: string]: string;
+}
+
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
@@ -10,18 +22,64 @@ const Contact: React.FC = () => {
     message: ''
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
+
+  const validateForm = (data: FormData): FormErrors => {
+    const newErrors: FormErrors = {};
+    if (!data.name.trim()) newErrors.name = 'Name is required';
+    if (!data.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
+    if (data.phone && !/^[\d\s\-\+\(\)]*$/.test(data.phone)) {
+      newErrors.phone = 'Please enter a valid phone number';
+    }
+    if (!data.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (data.message.trim().length < 10) {
+      newErrors.message = 'Message must be at least 10 characters';
+    }
+    return newErrors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log(formData);
+    const newErrors = validateForm(formData);
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('https://formspree.io/f/xjknakvj', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) throw new Error('Failed to submit');
+      setSubmitStatus('success');
+      setSubmitMessage('Thank you! Your message has been sent successfully.');
+      setFormData({ name: '', email: '', phone: '', company: '', message: '' });
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } catch (error) {
+      setSubmitStatus('error');
+      setSubmitMessage('Unable to send message. Please try again later or call (978) 632-8151.');
+      console.error('Form error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -41,8 +99,8 @@ const Contact: React.FC = () => {
           
           <div className="info-section">
             <h3>Contact Details</h3>
-            <p>Phone: (978) 632-8151</p>
-            <p>Email: info@roycodistributors.com</p>
+            <p>Phone: <a href="tel:+19786328151">(978) 632-8151</a></p>
+            <p>Email: <a href="mailto:info@roycodistributors.com">info@roycodistributors.com</a></p>
           </div>
           
           <div className="info-section">
@@ -53,19 +111,23 @@ const Contact: React.FC = () => {
           
           <div className="map-container">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.1460458520096!2d-71.94875108622539!3d42.57342252147191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e3e2017d6aaaab%3A0xe501f2704012dd1b!2s211%20Colony%20Rd%2C%20Gardner%2C%20MA%2001440!5e0!3m2!1sen!2sus!4v1753665928448!5m2!1sen!2sus"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.148622805147!2d-71.94872932180087!3d42.57336782159563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e3e201760d052b%3A0xa696a867e9734e81!2sRoyco%20Distributors%20Inc!5e0!3m2!1sen!2sus!4v1765325266326!5m2!1sen!2sus"
               width="100%"
               height="300"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
+              sandbox="allow-same-origin"
               title="Royco Distributors Location Map"
             />
           </div>
         </div>
 
         <div className="contact-right">
+          {submitStatus === 'success' && <div className="form-message success">{submitMessage}</div>}
+          {submitStatus === 'error' && <div className="form-message error">{submitMessage}</div>}
+          
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <input
@@ -75,8 +137,10 @@ const Contact: React.FC = () => {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Name"
-                required
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? 'name-error' : undefined}
               />
+              {errors.name && <span id="name-error" className="error-text">{errors.name}</span>}
             </div>
 
             <div className="form-group">
@@ -87,8 +151,10 @@ const Contact: React.FC = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Email"
-                required
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? 'email-error' : undefined}
               />
+              {errors.email && <span id="email-error" className="error-text">{errors.email}</span>}
             </div>
 
             <div className="form-group">
@@ -99,7 +165,10 @@ const Contact: React.FC = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="Phone"
+                aria-invalid={!!errors.phone}
+                aria-describedby={errors.phone ? 'phone-error' : undefined}
               />
+              {errors.phone && <span id="phone-error" className="error-text">{errors.phone}</span>}
             </div>
 
             <div className="form-group">
@@ -120,12 +189,20 @@ const Contact: React.FC = () => {
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Message"
-                required
                 rows={5}
+                aria-invalid={!!errors.message}
+                aria-describedby={errors.message ? 'message-error' : undefined}
               />
+              {errors.message && <span id="message-error" className="error-text">{errors.message}</span>}
             </div>
 
-            <button type="submit" className="submit-btn">Send Message</button>
+            <button 
+              type="submit" 
+              className="submit-btn"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Sending...' : 'Send Message'}
+            </button>
           </form>
         </div>
       </div>

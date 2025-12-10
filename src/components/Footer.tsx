@@ -10,7 +10,7 @@ const FooterContainer = styled.footer`
 `;
 
 const FooterContent = styled.div`
-  max-width: 100px; 
+  max-width: 1200px; 
   margin: 0 auto;
   display: flex;
   justify-content: center;

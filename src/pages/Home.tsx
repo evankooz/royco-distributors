@@ -1,4 +1,3 @@
-import React from 'react';
 import HeroSlideshow from '../components/HeroSlideshow';
 import ProductGrid from '../components/ProductGrid';
 import { Link } from 'react-router-dom';

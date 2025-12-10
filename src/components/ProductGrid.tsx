@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import React from 'react';
 
 const Grid = styled.div`
   display: grid;
@@ -38,6 +39,7 @@ const ProductImage = styled.img`
   width: 100%;
   height: 200px;
   object-fit: cover;
+  display: block;
 `;
 
 const ProductInfo = styled.div`
@@ -79,6 +81,33 @@ interface ProductGridProps {
   featured?: boolean;
   selectedCategory?: string;
 }
+
+interface ProductCardProps {
+  product: Product;
+  index: number;
+}
+
+const ProductCardComponent: React.FC<ProductCardProps> = ({ product, index }) => (
+  <ProductCard
+    key={product.id}
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: index * 0.1 }}
+  >
+    <ProductImage
+      src={product.imageUrl}
+      alt={product.name}
+      loading="lazy"
+    />
+    <ProductInfo>
+      <ProductName>{product.name}</ProductName>
+      <ProductDescription>{product.description}</ProductDescription>
+      <ProductCategory>{product.category}</ProductCategory>
+    </ProductInfo>
+  </ProductCard>
+);
+
+const MemoizedProductCard = React.memo(ProductCardComponent);
 
 export const productCategories = [
   {
@@ -215,23 +244,7 @@ export default function ProductGrid({ featured = false, selectedCategory }: Prod
   return (
     <Grid>
       {products.map((product, index) => (
-        <ProductCard
-          key={product.id}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}  // Changed from whileInView
-          transition={{ duration: 0.5, delay: index * 0.1 }}  // Added stagger delay
-        >
-          <ProductImage
-            src={product.imageUrl}
-            alt={product.name}
-            loading="lazy"
-          />
-          <ProductInfo>
-            <ProductName>{product.name}</ProductName>
-            <ProductDescription>{product.description}</ProductDescription>
-            <ProductCategory>{product.category}</ProductCategory>
-          </ProductInfo>
-        </ProductCard>
+        <MemoizedProductCard key={product.id} product={product} index={index} />
       ))}
     </Grid>
   );

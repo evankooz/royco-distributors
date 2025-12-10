@@ -144,10 +144,10 @@ export function Navbar() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.18 }}
         >
-          <li><NavLink to="/">Home</NavLink></li>
-          <li><NavLink to="/products">Products</NavLink></li>
-          <li><NavLink to="/about">About</NavLink></li>
-          <li><NavLink to="/contact">Contact</NavLink></li>
+          <li><NavLink to="/" onClick={() => setIsOpen(false)}>Home</NavLink></li>
+          <li><NavLink to="/products" onClick={() => setIsOpen(false)}>Products</NavLink></li>
+          <li><NavLink to="/about" onClick={() => setIsOpen(false)}>About</NavLink></li>
+          <li><NavLink to="/contact" onClick={() => setIsOpen(false)}>Contact</NavLink></li>
         </Links>
 
         {/* Mobile menu button */}

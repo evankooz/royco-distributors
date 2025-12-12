@@ -118,7 +118,7 @@ const Contact: React.FC = () => {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              sandbox="allow-same-origin"
+              sandbox="allow-same-origin allow-scripts"
               title="Royco Distributors Location Map"
             />
           </div>

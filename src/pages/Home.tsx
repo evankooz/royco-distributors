@@ -29,9 +29,6 @@ const Home: React.FC = () => {
           <p>Explore our most popular industrial solutions</p>
         </div>
         <ProductGrid featured={true} />
-        <div className="view-all">
-          <Link to="/products" className="btn-primary">View All Products</Link>
-        </div>
       </section>
 
       {/* Call to Action */}

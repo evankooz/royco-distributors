@@ -25,46 +25,60 @@ const Grid = styled.div`
 
 const ProductCard = styled(motion.div)`
   background: #fff;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   &:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
     transform: translateY(-4px);
   }
 `;
 
 const ProductImage = styled.img`
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
   display: block;
 `;
 
 const ProductInfo = styled.div`
-  padding: 1rem;
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ProductName = styled.h3`
-  margin: 0 0 0.5rem;
-  font-size: 1.25rem;
+  margin: 0.5rem 0 0.75rem;
+  font-size: 1.2rem;
   color: #005FBF;
+  font-weight: 600;
 `;
 
 const ProductDescription = styled.p`
   margin: 0;
   color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  flex: 1;
 `;
 
 const ProductCategory = styled.span`
   display: inline-block;
-  padding: 0.25rem 0.5rem;
-  background: #D22030;
+  padding: 0.4rem 0.8rem;
+  background: #E94444;
   color: white;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: fit-content;
 `;
 
 const base = import.meta.env.BASE_URL;
@@ -100,9 +114,9 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ product, index }) =>
       loading="lazy"
     />
     <ProductInfo>
+      <ProductCategory>{product.category}</ProductCategory>
       <ProductName>{product.name}</ProductName>
       <ProductDescription>{product.description}</ProductDescription>
-      <ProductCategory>{product.category}</ProductCategory>
     </ProductInfo>
   </ProductCard>
 );
@@ -240,6 +254,14 @@ export default function ProductGrid({ featured = false, selectedCategory }: Prod
     featured ? true : !selectedCategory || product.category === selectedCategory
   );
   const products = featured ? filteredProducts.slice(0, 3) : filteredProducts;
+
+  if (products.length === 0) {
+    return (
+      <div style={{ textAlign: 'center', padding: '3rem 2rem', color: '#666' }}>
+        <p style={{ fontSize: '1.1rem' }}>No products found in this category.</p>
+      </div>
+    );
+  }
   
   return (
     <Grid>
